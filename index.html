@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Text Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="left-section">
+            <div class="logo">Logo</div>
+            <div class="icons">
+                <div class="icon world-icon" onclick="showDefaultPage()">🌐</div>
+                <div class="icon collapse-icon" onclick="toggleSidebar()">⇔</div>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="tabs">
+            <button class="tablinks" onclick="openTab(event, 'Tab1')">🗺️</button>
+            <button class="tablinks" onclick="openTab(event, 'Tab2')">📖</button>
+            <button class="tablinks" onclick="openTab(event, 'Tab3')">👤</button>
+            <button class="add-tab-btn" onclick="showAddTabModal()">➕</button>
+        </div>
+        <div class="sidebar" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div id="Tab1" class="tabcontent">
+                <div class="item" id="item1" draggable="true" data-content-id="Content1" ondragstart="drag(event)">
+                    <div class="item-header">
+                        <div class="arrow" onclick="toggleNested(this)">&#9654;</div>
+                        <div class="item-text">Item 1</div>
+                    </div>
+                    <div class="nested-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="item" id="item1-1" draggable="true" data-content-id="Content1-1" ondragstart="drag(event)">
+                            <div class="item-header">
+                                <div class="arrow" onclick="toggleNested(this)">&#9654;</div>
+                                <div class="item-text">Item 1-1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" id="item2" draggable="true" data-content-id="Content2" ondragstart="drag(event)">
+                    <div class="item-header">
+                        <div class="arrow" onclick="toggleNested(this)">&#9654;</div>
+                        <div class="item-text">Item 2</div>
+                    </div>
+                    <div class="nested-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="item" id="item2-1" draggable="true" data-content-id="Content2-1" ondragstart="drag(event)">
+                            <div class="item-header">
+                                <div class="arrow" onclick="toggleNested(this)">&#9654;</div>
+                                <div class="item-text">Item 2-1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Tab2" class="tabcontent">
+                <div class="item" id="itemA" draggable="true" data-content-id="ContentA" ondragstart="drag(event)">
+                    <div class="item-header">
+                        <div class="arrow" onclick="toggleNested(this)">&#9654;</div>
+                        <div class="item-text">Item A</div>
+                    </div>
+                    <div class="nested-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="item" id="itemA-1" draggable="true" data-content-id="ContentA-1" ondragstart="drag(event)">
+                            <div class="item-header">
+                                <div class="arrow" onclick="toggleNested(this)">&#9654;</div>
+                                <div class="item-text">Item A-1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Tab3" class="tabcontent">
+                <div class="item" id="itemX" draggable="true" data-content-id="ContentX" ondragstart="drag(event)">
+                    <div class="item-header">
+                        <div class="arrow" onclick="toggleNested(this)">&#9654;</div>
+                        <div class="item-text">Item X</div>
+                    </div>
+                    <div class="nested-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="item" id="itemX-1" draggable="true" data-content-id="ContentX-1" ondragstart="drag(event)">
+                            <div class="item-header">
+                                <div class="arrow" onclick="toggleNested(this)">&#9654;</div>
+                                <div class="item-text">Item X-1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="add-item-btn" onclick="addItem()">Add Item</button>
+        <div class="content-area">
+            <div id="defaultContent" class="content active">
+                <div class="image-icon" onclick="showImageUploadModal('defaultContent')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+            <div id="Content1" class="content">
+                <div class="image-icon" onclick="showImageUploadModal('Content1')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+            <div id="Content1-1" class="content">
+                <div class="image-icon" onclick="showImageUploadModal('Content1-1')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+            <div id="Content2" class="content">
+                <div class="image-icon" onclick="showImageUploadModal('Content2')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+            <div id="Content2-1" class="content">
+                <div class="image-icon" onclick="showImageUploadModal('Content2-1')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+            <div id="ContentA" class="content">
+                <div class="image-icon" onclick="showImageUploadModal('ContentA')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+            <div id="ContentA-1" class="content">
+                <div class="image-icon" onclick="showImageUploadModal('ContentA-1')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+            <div id="ContentX" class="content">
+                <div class="image-icon" onclick="showImageUploadModal('ContentX')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+            <div id="ContentX-1" class="content">
+                <div class="image-icon" onclick="showImageUploadModal('ContentX-1')">🖼️</div>
+                <button class="add-content-block-btn" onclick="showContentBlockModal()">Add Content Block</button>
+            </div>
+        </div>
+    </div>
+    <div id="contextMenu" class="context-menu">
+        <ul>
+            <li onclick="createItem()">Create</li>
+            <li onclick="renameItem()">Rename</li>
+            <li onclick="duplicateItem()">Duplicate</li>
+            <li onclick="deleteItem()">Delete</li>
+        </ul>
+    </div>
+
+    <div id="addTabModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddTabModal()">&times;</span>
+            <h2>Add New Tab</h2>
+            <label for="tabIcon">Choose an icon:</label>
+            <div id="iconGrid">
+                <div class="icon-option" onclick="selectIcon('🗺️')">🗺️</div>
+                <div class="icon-option" onclick="selectIcon('📖')">📖</div>
+                <div class="icon-option" onclick="selectIcon('👤')">👤</div>
+                <div class="icon-option" onclick="selectIcon('⚔️')">⚔️</div>
+                <div class="icon-option" onclick="selectIcon('🏰')">🏰</div>
+                <div class="icon-option" onclick="selectIcon('🐉')">🐉</div>
+                <div class="icon-option" onclick="selectIcon('🔮')">🔮</div>
+                <div class="icon-option" onclick="selectIcon('🧙')">🧙</div>
+                <div class="icon-option" onclick="selectIcon('🛡️')">🛡️</div>
+                <div class="icon-option" onclick="selectIcon('🗡️')">🗡️</div>
+            </div>
+            <br><br>
+            <label for="tabName">Tab Name:</label>
+            <input type="text" id="tabName">
+            <br><br>
+            <button onclick="addTab()">Add Tab</button>
+        </div>
+    </div>
+
+    <div id="imageUploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeImageUploadModal()">&times;</span>
+            <h2>Upload Image</h2>
+            <input type="file" id="imageInput" accept="image/*">
+            <div id="imageDropArea">or drag and drop here</div>
+            <div>
+                <button class="size-button" onclick="selectBannerSize('short')">Short</button>
+                <button class="size-button" onclick="selectBannerSize('medium')">Medium</button>
+                <button class="size-button" onclick="selectBannerSize('tall')">Tall</button>
+            </div>
+            <button onclick="saveImage()">Save</button>
+        </div>
+    </div>
+
+    <div id="imageOptionsMenu" class="context-menu">
+        <ul>
+            <li onclick="resizeBanner('short')">Short</li>
+            <li onclick="resizeBanner('medium')">Medium</li>
+            <li onclick="resizeBanner('tall')">Tall</li>
+            <li onclick="removeImage()">Remove</li>
+        </ul>
+    </div>
+
+    <div id="contentBlockModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeContentBlockModal()">&times;</span>
+            <h2>Select Content Block</h2>
+            <div class="block-grid">
+                <div class="block-option" onclick="addContentBlock('Text Editor')">
+                    <div class="block-icon">📝</div>
+                    <div class="block-label">Text Editor</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
